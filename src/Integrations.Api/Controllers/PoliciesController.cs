@@ -7,9 +7,16 @@ namespace Integrations.Api.Controllers;
 [Route("/api/[controller]")]
 public class PoliciesController : ControllerBase
 {
+    private readonly IWebHostEnvironment _environment;
+
+    public PoliciesController(IWebHostEnvironment environment)
+    {
+        _environment = environment;
+    }
+
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok();
+        return Ok($"{_environment.EnvironmentName} environment is running");
     }
 }
