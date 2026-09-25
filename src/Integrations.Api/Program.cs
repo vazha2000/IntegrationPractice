@@ -6,12 +6,14 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.Logger.LogInformation("Application environment: {EnvironmentName}", app.Environment.EnvironmentName);
+
+if(app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.Logger.LogInformation("from if, Environment is {Name}", app.Environment.EnvironmentName);
 }
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapControllers();
 app.Run();
