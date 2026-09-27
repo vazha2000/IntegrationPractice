@@ -17,6 +17,12 @@ public class PoliciesController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok($"{_environment.EnvironmentName} environment is running");
+        #if DEBUG
+        const string buildConfiguration = "Debug";
+        #else
+        const string buildConfiguration = "Release";
+        #endif
+
+        return Ok($"{_environment.EnvironmentName} environment is running in {buildConfiguration} mode");
     }
 }

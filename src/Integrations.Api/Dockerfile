@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 
+ARG BUILD_CONFIGURATION=Release
+
 WORKDIR /src
 
 COPY ["src/Integrations.Api/Integrations.Api.csproj", "src/Integrations.Api/"]
@@ -11,7 +13,7 @@ COPY . .
 WORKDIR /src/src/Integrations.Api
 
 RUN dotnet publish "Integrations.Api.csproj" \
-    -c Release \
+    -c $BUILD_CONFIGURATION \
     -o /app/publish \
     --no-restore \
     /p:UseAppHost=false
