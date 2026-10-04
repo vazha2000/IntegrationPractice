@@ -4,7 +4,7 @@ services:
     container_name: integration-foundations-sqlserver
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "Integration_2026!"
+      MSSQL_SA_PASSWORD: "${SQLSERVER_SA_PASSWORD}"
     ports:
       - "14333:1433"
     volumes:
@@ -29,7 +29,7 @@ services:
         condition: service_healthy
     environment:
       ASPNETCORE_ENVIRONMENT: Production
-      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=IntegrationFoundations;User Id=sa;Password=Integration_2026!;TrustServerCertificate=True"
+      ConnectionStrings__DefaultConnection: "${API_CONNECTION_STRING}"
     ports:
       - "8080:8080"
 
