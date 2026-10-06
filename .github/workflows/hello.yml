@@ -21,6 +21,8 @@ env:
 jobs:
   first-job:
     runs-on: ubuntu-latest
+    outputs:
+      greeting: ${{ steps.create-output.outputs.greeting }}
 
     steps:
       - name: Print first job message
@@ -28,6 +30,10 @@ jobs:
 
       - name: Show environment and runner OS
         run: echo "Environment is $ENVIRONMENT_NAME and runner is $RUNNER_OS"
+
+      - name: Create output
+        id: create-output
+        run: echo "greeting=Hello from first-job" >> "$GITHUB_OUTPUT"
 
   second-job:
     runs-on: ubuntu-latest
@@ -52,6 +58,9 @@ jobs:
 
       - name: Show current date
         run: date
+
+      - name: Print first job output
+        run: echo "${{ needs.first-job.outputs.greeting }}"
 
   fourth-job:
     needs:
