@@ -10,6 +10,8 @@ on:
       - synchronize
       - reopened
       - ready_for_review
+  schedule:
+    - cron: '0 22 * * *'
   workflow_dispatch:
 
 env:
