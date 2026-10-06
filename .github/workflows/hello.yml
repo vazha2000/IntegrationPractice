@@ -16,6 +16,7 @@ jobs:
         run: echo "Running on $RUNNER_OS"
 
   second-job-python:
+    needs: first-job
     runs-on: ubuntu-latest
 
     steps:
@@ -27,3 +28,25 @@ jobs:
       - name: Print second job message
         run: print("Hello World!")
         shell: python
+
+  third-job:
+    needs: second-job-python
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print third job message
+        run: echo "This is the third job"
+
+      - name: Show current date
+        run: date
+
+  fourth-job:
+    needs: third-job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print fourth job message
+        run: echo "This is the fourth job"
+
+      - name: Finish workflow
+        run: echo "All jobs completed in order"
