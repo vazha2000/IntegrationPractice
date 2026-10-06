@@ -1,18 +1,26 @@
 name: Hello Workflow
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
-  hello:
+  first-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print first message
-        run: echo "Hello from GitHub Actions"
+      - name: Print first job message
+        run: echo "This is the first job"
 
-      - name: Print current folder
+      - name: Show first job runner OS
+        run: echo "Running on $RUNNER_OS"
+
+  second-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print second job message
+        run: echo "This is the second job"
+
+      - name: Show current folder
         run: pwd
-
-      - name: List files
-        run: ls -la
