@@ -47,7 +47,8 @@ jobs:
 
     steps:
       - name: Print third job message
-        run: echo "This is the third job"
+        if: github.event_name == 'pull_request'
+        run: echo "This step only runs for pull requests"
 
       - name: Show current date
         run: date
