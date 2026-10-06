@@ -42,7 +42,9 @@ jobs:
         run: date
 
   fourth-job:
-    needs: third-job
+    needs:
+      - first-job
+      - second-job-python
     runs-on: ubuntu-latest
 
     steps:
