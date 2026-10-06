@@ -15,12 +15,11 @@ jobs:
       - name: Show first job runner OS
         run: echo "Running on $RUNNER_OS"
 
-  second-job:
+  second-job-python:
     runs-on: ubuntu-latest
 
     steps:
       - name: Print second job message
-        run: echo "This is the second job"
+        run: print("Hello World!")
+        shell: python
 
-      - name: Show current folder
-        run: pwd
