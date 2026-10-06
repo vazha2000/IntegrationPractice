@@ -2,6 +2,12 @@ name: Hello Workflow
 
 on:
   push:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
   workflow_dispatch:
 
 env:
@@ -19,7 +25,7 @@ jobs:
       - name: Show environment and runner OS
         run: echo "Environment is $ENVIRONMENT_NAME and runner is $RUNNER_OS"
 
-  second-job-python:
+  second-job:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +38,7 @@ jobs:
   third-job:
     needs:
       - first-job
-      - second-job-python
+      - second-job
     runs-on: ubuntu-latest
 
     steps:
@@ -45,7 +51,7 @@ jobs:
   fourth-job:
     needs:
       - first-job
-      - second-job-python
+      - second-job
     runs-on: ubuntu-latest
 
     steps:
