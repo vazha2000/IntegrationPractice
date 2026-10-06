@@ -1,7 +1,6 @@
 name: Hello Workflow
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
@@ -10,4 +9,4 @@ jobs:
 
     steps:
       - name: Print message
-        run: echo "Hello from GitHub Actions"
+        run: echo "Hello from GitHub Actions 2"
