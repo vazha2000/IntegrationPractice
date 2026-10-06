@@ -16,7 +16,6 @@ jobs:
         run: echo "Running on $RUNNER_OS"
 
   second-job-python:
-    needs: first-job
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +29,9 @@ jobs:
         shell: python
 
   third-job:
-    needs: second-job-python
+    needs:
+      - first-job
+      - second-job-python
     runs-on: ubuntu-latest
 
     steps:
