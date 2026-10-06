@@ -1,7 +1,6 @@
 name: Hello Github Workflow
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
@@ -9,5 +8,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print message
-        run: echo "Hello from GitHub Actions 3"
+      - name: Print first message
+        run: echo "Hello from GitHub Actions"
+
+      - name: Print current folder
+        run: pwd
+
+      - name: List files
+        run: ls -la
