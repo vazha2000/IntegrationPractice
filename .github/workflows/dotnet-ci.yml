@@ -41,6 +41,7 @@ jobs:
         run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
 
   test:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
