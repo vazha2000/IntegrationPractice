@@ -27,15 +27,27 @@ env:
 jobs:
   first-job:
     runs-on: ubuntu-latest
+    env:
+      JOB_NAME: first-job
     outputs:
       greeting: ${{ steps.create-output.outputs.greeting }}
 
     steps:
       - name: Print first job message
-        run: echo "This is the first job for $APP_NAME"
+        run: echo "This is $JOB_NAME for $APP_NAME"
 
       - name: Show environment and runner OS
         run: echo "Environment is $ENVIRONMENT_NAME and runner is $RUNNER_OS"
+
+      - name: Print step variable
+        env:
+          STEP_MESSAGE: This value exists only in this step
+        run: echo "$STEP_MESSAGE"
+
+      - name: Print GitHub context values
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Branch or ref: ${{ github.ref }}"
 
       - name: Create output
         id: create-output
