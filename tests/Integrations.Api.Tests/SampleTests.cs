@@ -7,7 +7,7 @@ public class SampleTests
     {
         var result = 2 + 2;
 
-        Assert.Equal(5, result);
+        Assert.Equal(4, result);
     }
 
     [Fact]
